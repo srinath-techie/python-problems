@@ -1,0 +1,14 @@
+from PIL import Image
+
+chars = "@%#*+=-:. "
+img_path = "your_image.jpg"
+
+img = Image.open(img_path)
+img = img.resize((100, 50))
+img = img.convert("L")
+
+pixels = img.getdata()
+ascii_str = "".join([chars[pixel // 25] for pixel in pixels])
+
+for i in range(0, len(ascii_str), 100):
+    print(ascii_str[i:i+100])
